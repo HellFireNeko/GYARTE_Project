@@ -19,7 +19,7 @@ public class NetworkServer : NetworkManager
     void Start()
     {
         //OnClientConnectedCallback += NetworkServer_OnClientConnectedCallback;
-        //OnClientDisconnectCallback += NetworkServer_OnClientDisconnectCallback;
+        OnClientDisconnectCallback += NetworkServer_OnClientDisconnectCallback;
         //NetworkSceneManager.OnSceneSwitched += NetworkSceneManager_OnSceneSwitched;
 
     }
@@ -43,15 +43,13 @@ public class NetworkServer : NetworkManager
 
     //ulong test;
 
-    //private void NetworkServer_OnClientDisconnectCallback(ulong obj)
-    //{
-    //    Debug.Log($"Disconnect {obj}", this);
+    private void NetworkServer_OnClientDisconnectCallback(ulong obj)
+    {
+        Debug.Log($"Disconnect {obj}", this);
 
-    //    if (IsServer)
-    //    {
-    //        Invoke("DoThing2", 1);
-    //    }
-    //}
+        Destroy(gameObject);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+    }
 
     //private void NetworkServer_OnClientConnectedCallback(ulong obj)
     //{
@@ -86,10 +84,8 @@ public class NetworkServer : NetworkManager
 
     public void StopHostMethod()
     {
-        NetworkSceneManager.SwitchScene("Menu");
-        if (IsInvoking() is false)
-        {
-            Invoke("StopHost", 1);
-        }
+        StopHost();
+        Destroy(gameObject);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
     }
 }

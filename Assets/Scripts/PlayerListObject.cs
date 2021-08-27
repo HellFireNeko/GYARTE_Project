@@ -11,11 +11,21 @@ using MLAPI.Serialization.Pooled;
 public class PlayerListObject : NetworkBehaviour
 {
     Text TextObject;
+    [SerializeField]
+    private int PID = 1;
 
     // Use this for initialization
     void Start()
     {
         TextObject = GetComponent<Text>();
+        CustomMessagingManager.RegisterNamedMessageHandler("AssignPlayer", (sender, a) =>
+        {
+            using (PooledNetworkReader reader = PooledNetworkReader.Get(a))
+            {
+                var Id = reader.ReadInt32();
+                var Name = reader.
+            }
+        });
     }
 
     // Update is called once per frame

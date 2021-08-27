@@ -58,11 +58,11 @@
     <Compile Include="Assets\Scripts\MovementCharacter.cs" />
     <Compile Include="Assets\Scripts\PlayerList.cs" />
     <Compile Include="Assets\Scripts\DoNotDestroy.cs" />
+    <Compile Include="Assets\Scripts\PlayerListObject.cs" />
     <Compile Include="Assets\Scripts\MenuBehavior.cs" />
     <Compile Include="Assets\Scripts\NameReader.cs" />
     <Compile Include="Assets\Scripts\LobbyBehavior.cs" />
     <Compile Include="Assets\Scripts\NetworkServer.cs" />
-    <Compile Include="Assets\Scripts\PlayerListObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
