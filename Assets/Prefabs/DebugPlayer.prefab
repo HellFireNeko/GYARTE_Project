@@ -185,8 +185,9 @@ MonoBehaviour:
   gravity: 20
   sensitivity: 5
   LookContraint: 65
-  Locked: 0
-  Role: 0
+  Locked: 1
+  Role:
+    m_InternalValue: 1
 --- !u!114 &6207740518546349645
 MonoBehaviour:
   m_ObjectHideFlags: 0
