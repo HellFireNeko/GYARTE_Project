@@ -603,13 +603,13 @@ MonoBehaviour:
       PlayerPrefab: 1
     PlayerPrefabHash:
       id: 0
-    CreatePlayerPrefab: 0
+    CreatePlayerPrefab: 1
     ReceiveTickrate: 64
     NetworkTickIntervalSec: 0.05
     MaxReceiveEventsPerTickRate: 500
     EventTickrate: 64
     ClientConnectionBufferTimeout: 10
-    ConnectionApproval: 0
+    ConnectionApproval: 1
     ConnectionData: 
     EnableTimeResync: 1
     TimeResyncInterval: 30
@@ -6469,12 +6469,14 @@ MonoBehaviour:
     Group: {fileID: 1746192332}
     HostName: {fileID: 1499162154}
     Port: {fileID: 1272513427}
+    UName: {fileID: 407052515}
     HostButton: {fileID: 1560006002}
     ReturnButton: {fileID: 1144526127}
   Join:
     Group: {fileID: 2040053559}
     HostName: {fileID: 797206925}
     Port: {fileID: 335446086}
+    UName: {fileID: 792837565}
     JoinButton: {fileID: 1187305543}
     ReturnButton: {fileID: 2066681674}
   Server: {fileID: 193709702}

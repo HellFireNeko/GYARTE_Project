@@ -32,6 +32,7 @@ public class MenuBehavior : MonoBehaviour
     void JJ()
     {
         Server.SetConnectionData(Join.HostName.text, int.Parse(Join.Port.text));
+        Server.NetworkConfig.ConnectionData = System.Text.Encoding.ASCII.GetBytes(Join.UName.text);
         Server.Connect();
     }
 
@@ -44,6 +45,7 @@ public class MenuBehavior : MonoBehaviour
     void HH()
     {
         Server.SetConnectionData(Host.HostName.text, int.Parse(Host.Port.text));
+        Server.NetworkConfig.ConnectionData = System.Text.Encoding.ASCII.GetBytes(Host.UName.text);
         Server.Host();
     }
 
@@ -101,6 +103,7 @@ public class HostPanel : GroupPanelObject
 {
     public InputField HostName;
     public InputField Port;
+    public InputField UName;
     public Button HostButton;
     public Button ReturnButton;
 }
@@ -110,6 +113,7 @@ public class JoinPanel : GroupPanelObject
 {
     public InputField HostName;
     public InputField Port;
+    public InputField UName;
     public Button JoinButton;
     public Button ReturnButton;
 }

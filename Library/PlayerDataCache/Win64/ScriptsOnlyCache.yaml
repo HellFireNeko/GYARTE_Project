@@ -102,19 +102,19 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1506}
     - Class: 114
-      Script: {instanceID: 2546}
+      Script: {instanceID: 2532}
     - Class: 114
-      Script: {instanceID: 2670}
+      Script: {instanceID: 2656}
     - Class: 114
-      Script: {instanceID: 3112}
+      Script: {instanceID: 3098}
     - Class: 114
-      Script: {instanceID: 3226}
+      Script: {instanceID: 3212}
     - Class: 114
-      Script: {instanceID: 4212}
+      Script: {instanceID: 4200}
     - Class: 114
-      Script: {instanceID: 4718}
+      Script: {instanceID: 4706}
     - Class: 114
-      Script: {instanceID: 4734}
+      Script: {instanceID: 4722}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -167,55 +167,55 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1506}
     - Class: 114
-      Script: {instanceID: 1712}
+      Script: {instanceID: 1698}
     - Class: 114
-      Script: {instanceID: 1776}
+      Script: {instanceID: 1762}
     - Class: 114
-      Script: {instanceID: 2546}
+      Script: {instanceID: 2532}
     - Class: 114
-      Script: {instanceID: 2670}
+      Script: {instanceID: 2656}
     - Class: 114
-      Script: {instanceID: 2928}
+      Script: {instanceID: 2914}
     - Class: 114
-      Script: {instanceID: 3066}
+      Script: {instanceID: 3052}
+    - Class: 114
+      Script: {instanceID: 3098}
     - Class: 114
       Script: {instanceID: 3112}
     - Class: 114
-      Script: {instanceID: 3126}
+      Script: {instanceID: 3138}
     - Class: 114
-      Script: {instanceID: 3152}
+      Script: {instanceID: 3212}
     - Class: 114
-      Script: {instanceID: 3226}
+      Script: {instanceID: 3400}
     - Class: 114
-      Script: {instanceID: 3412}
+      Script: {instanceID: 3420}
     - Class: 114
-      Script: {instanceID: 3432}
+      Script: {instanceID: 3572}
     - Class: 114
-      Script: {instanceID: 3584}
+      Script: {instanceID: 3802}
     - Class: 114
-      Script: {instanceID: 3814}
+      Script: {instanceID: 3888}
     - Class: 114
-      Script: {instanceID: 3900}
+      Script: {instanceID: 3922}
     - Class: 114
-      Script: {instanceID: 3934}
+      Script: {instanceID: 4118}
     - Class: 114
-      Script: {instanceID: 4130}
+      Script: {instanceID: 4156}
     - Class: 114
-      Script: {instanceID: 4168}
+      Script: {instanceID: 4270}
     - Class: 114
-      Script: {instanceID: 4282}
+      Script: {instanceID: 4310}
     - Class: 114
-      Script: {instanceID: 4322}
+      Script: {instanceID: 4330}
     - Class: 114
-      Script: {instanceID: 4342}
+      Script: {instanceID: 4426}
     - Class: 114
-      Script: {instanceID: 4438}
+      Script: {instanceID: 4706}
     - Class: 114
-      Script: {instanceID: 4718}
+      Script: {instanceID: 4756}
     - Class: 114
-      Script: {instanceID: 4768}
-    - Class: 114
-      Script: {instanceID: 5040}
+      Script: {instanceID: 5028}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -703,7 +703,7 @@ ScriptsOnlyBuild:
     className: DebugLogPopup
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 7b8e35aaa6eea62ffaf8841b0ad9416d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerListObject

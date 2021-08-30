@@ -63,6 +63,8 @@
     <Compile Include="Assets\Scripts\NameReader.cs" />
     <Compile Include="Assets\Scripts\LobbyBehavior.cs" />
     <Compile Include="Assets\Scripts\NetworkServer.cs" />
+    <Compile Include="Assets\Scripts\DebugTriggerShow.cs" />
+    <Compile Include="Assets\Scripts\HealthScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

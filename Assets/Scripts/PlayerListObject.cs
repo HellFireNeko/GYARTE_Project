@@ -7,7 +7,6 @@ using MLAPI.NetworkVariable.Collections;
 using MLAPI.Messaging;
 using MLAPI.Serialization.Pooled;
 
-[RequireComponent(typeof(NetworkObject))]
 public class PlayerListObject : NetworkBehaviour
 {
     Text TextObject;
@@ -22,10 +21,20 @@ public class PlayerListObject : NetworkBehaviour
         {
             using (PooledNetworkReader reader = PooledNetworkReader.Get(a))
             {
+                print("recieved");
                 var Id = reader.ReadInt32();
-                var Name = reader.
+                var cid = reader.ReadUInt64();
+                var Name = reader.ReadString().ToString();
+
+                if (PID == Id)
+                {
+                    TextObject.text = Name;
+                    TextObject.enabled = true;
+                    NetworkObject.ChangeOwnership(cid);
+                }
             }
         });
+        NetworkObject.RemoveOwnership();
     }
 
     // Update is called once per frame
@@ -36,13 +45,12 @@ public class PlayerListObject : NetworkBehaviour
 
     public override void OnGainedOwnership()
     {
-
         base.OnGainedOwnership();
     }
 
     public override void OnLostOwnership()
     {
-
+        TextObject.enabled = false;
         base.OnLostOwnership();
     }
 }

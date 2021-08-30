@@ -16,24 +16,43 @@ public class NetworkServer : NetworkManager
 {
     public string LocalName;
 
+    private int clients = 1;
+
     void Start()
     {
-        //OnClientConnectedCallback += NetworkServer_OnClientConnectedCallback;
+        OnClientConnectedCallback += NetworkServer_OnClientConnectedCallback;
         OnClientDisconnectCallback += NetworkServer_OnClientDisconnectCallback;
         //NetworkSceneManager.OnSceneSwitched += NetworkSceneManager_OnSceneSwitched;
+        ConnectionApprovalCallback += ApprovalCheck;
 
+        //CustomMessagingManager.RegisterNamedMessageHandler("ClientConnectMessage", (sender, a) =>
+        //{
+        //    CustomMessagingManager.SendNamedMessage("AssignPlayer", null, a);
+        //});
     }
 
-    private void ApprovalCheck(byte[] connectionData, ulong clientId, MLAPI.NetworkManager.ConnectionApprovedDelegate callback)
+    private void ApprovalCheck(byte[] connectionData, ulong clientId, NetworkManager.ConnectionApprovedDelegate callback)
     {
         //Your logic here
         bool approve = true;
         bool createPlayerObject = true;
 
-
-
         //If approve is true, the connection gets added. If it's false. The client gets disconnected
         callback(createPlayerObject, null, approve, null, null);
+
+        //string name = System.Text.Encoding.ASCII.GetString(connectionData);
+
+        //using (PooledNetworkBuffer buff = PooledNetworkBuffer.Get())
+        //{
+        //    using (PooledNetworkWriter writer = PooledNetworkWriter.Get(buff))
+        //    {
+        //        writer.WriteInt32(clients);
+        //        writer.WriteUInt64(clientId);
+        //        writer.WriteString(name);
+        //        CustomMessagingManager.SendNamedMessage("ClientConnectMessage", null, buff);
+        //    }
+        //}
+        //clients++;
     }
 
     //private void NetworkSceneManager_OnSceneSwitched()
@@ -49,17 +68,17 @@ public class NetworkServer : NetworkManager
 
         Destroy(gameObject);
         UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+        clients--;
     }
 
-    //private void NetworkServer_OnClientConnectedCallback(ulong obj)
-    //{
-    //    Debug.Log($"Connected {obj}", this);
-    //    if (IsServer)
-    //    {
-    //        test = obj;
-    //        Invoke("DoThing1", 1);
-    //    }
-    //}
+    private void NetworkServer_OnClientConnectedCallback(ulong obj)
+    {
+        Debug.Log($"Connected {obj}", this);
+        if (IsServer)
+        {
+
+        }
+    }
 
     public void SetConnectionData(string host, int port)
     {
@@ -72,9 +91,26 @@ public class NetworkServer : NetworkManager
         LocalName = hostName;
         StartHost();
         NetworkSceneManager.SwitchScene("Lobby");
+
         //Invoke("DoThing", 1);
         //Invoke("DoThing3", 2);
+        //Invoke("thing", 2);
     }
+
+    //void thing()
+    //{
+    //    using (PooledNetworkBuffer buff = PooledNetworkBuffer.Get())
+    //    {
+    //        using (PooledNetworkWriter writer = PooledNetworkWriter.Get(buff))
+    //        {
+    //            writer.WriteInt32(clients);
+    //            writer.WriteUInt64(LocalClientId);
+    //            writer.WriteString(name);
+    //            CustomMessagingManager.SendNamedMessage("ClientConnectMessage", ServerClientId, buff);
+    //        }
+    //    }
+    //    clients++;
+    //}
 
     public void Connect(string clientName = "Guest")
     {
