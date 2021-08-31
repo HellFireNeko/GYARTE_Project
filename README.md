@@ -1,5 +1,5 @@
 # GYARTE_Project
-A 3D Multiplayer game made in Unity, using the MLAPI.
+A 3D Multiplayer game made in Unity.
 
 * Player count: 3-6
 * Connection method: Discord
