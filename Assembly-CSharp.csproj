@@ -58,6 +58,7 @@
     <Compile Include="Assets\Scripts\NetworkedClient.cs" />
     <Compile Include="Assets\Scripts\MovementCharacter.cs" />
     <Compile Include="Assets\Scripts\PlayerList.cs" />
+    <Compile Include="Assets\Scripts\DiscordTestBehavior.cs" />
     <Compile Include="Assets\Scripts\DoNotDestroy.cs" />
     <Compile Include="Assets\Scripts\PlayerListObject.cs" />
     <Compile Include="Assets\Scripts\MenuBehavior.cs" />
@@ -65,7 +66,7 @@
     <Compile Include="Assets\Scripts\HealthScript.cs" />
     <Compile Include="Assets\Scripts\LobbyBehavior.cs" />
     <Compile Include="Assets\Scripts\NetworkServer.cs" />
-    <Compile Include="Assets\Scripts\DiscordTestBehavior.cs" />
+    <Compile Include="Assets\Scripts\DiscordPlayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
