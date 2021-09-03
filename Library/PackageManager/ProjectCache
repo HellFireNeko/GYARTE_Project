@@ -5,7 +5,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637654043330665641
+      ticks: 637662555469640333
     m_Hash: 2545219403
   m_LockFileStatus:
     m_FilePath: C:/Users/theo.flink/GYARTE_Project/Packages/packages-lock.json
@@ -13,7 +13,7 @@ m_ProjectFiles:
     m_ContentTrackingEnabled: 1
     m_ModificationDate:
       serializedVersion: 2
-      ticks: 637654043331335242
+      ticks: 637662555469937933
     m_Hash: 1674560431
 m_EmbeddedPackageManifests:
   m_ManifestsStatus: {}
@@ -358,6 +358,7 @@ m_PackageAssets:
         - 1.2.1
         - 1.2.2
         - 1.2.3
+        - 1.2.4
         compatible:
         - 1.0.2
         - 1.0.3
@@ -370,7 +371,8 @@ m_PackageAssets:
         - 1.2.1
         - 1.2.2
         - 1.2.3
-        verified: 1.2.3
+        - 1.2.4
+        verified: 1.2.4
       dependencies: []
       resolvedDependencies: []
       keywords: []

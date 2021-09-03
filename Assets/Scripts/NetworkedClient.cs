@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MLAPI;
 using MLAPI.NetworkVariable;
+using MLAPI.Messaging;
 
 [Serializable]
 public enum PlayerRole
@@ -41,6 +42,9 @@ public class NetworkedClient : NetworkBehaviour
     [SerializeField]
     private bool Locked = false;
 
+    [SerializeField]
+    private bool GravityEnable = true;
+
     private bool IsActivePlayer = false;
 
     private NetworkVariableInt Health = new NetworkVariableInt(new NetworkVariableSettings() { WritePermission = NetworkVariablePermission.Everyone }, 3);
@@ -49,12 +53,30 @@ public class NetworkedClient : NetworkBehaviour
     [SerializeField]
     private NetworkVariable<PlayerRole> Role;
 
+    [SerializeField]
+    private bool RandomizeColor;
+
+    private NetworkVariableColor playerColor = new NetworkVariableColor();
+
     // Use this for initialization
     void Start()
     {
+        playerColor.OnValueChanged += (pr, color) => { GetComponent<MeshRenderer>().material.color = color; };
         controller = GetComponent<CharacterController>();
         Health.OnValueChanged += ListenChange;
+        GenerateMyColorServerRpc();
+    }
 
+    [ServerRpc]
+    private void GenerateMyColorServerRpc()
+    {
+        if (!IsServer || !RandomizeColor) return;
+
+        playerColor.Value = UnityEngine.Random.ColorHSV();
+    }
+
+    public void Init()
+    {
         if (IsLocalPlayer)
         {
             IsActivePlayer = true;
@@ -84,7 +106,8 @@ public class NetworkedClient : NetworkBehaviour
         Locked = !Locked;
     }
 
-    public void HitEvent()
+    [ServerRpc]
+    public void HitEventServerRpc()
     {
         Health.Value -= 1;
     }
@@ -97,6 +120,8 @@ public class NetworkedClient : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GetComponent<MeshRenderer>().material.color != playerColor.Value) { GetComponent<MeshRenderer>().material.color = playerColor.Value; }
+
         if (!Locked && IsActivePlayer && (Alive || Role.Value == PlayerRole.Hunter))
         {
             // is the controller on the ground?
@@ -140,9 +165,17 @@ public class NetworkedClient : NetworkBehaviour
                 var s = Physics.Raycast(Camera.main.transform.position, Camera.main.transform.rotation.eulerAngles, out RaycastHit hit, 5f, 3);
                 if (s)
                 {
-                    hit.collider.gameObject.GetComponent<NetworkedClient>().HitEvent();
+                    hit.collider.gameObject.GetComponent<NetworkedClient>().HitEventServerRpc();
                 }
             }
+        }
+        if (GravityEnable && Locked)
+        {
+            moveDirection.y = y;
+            //Applying gravity to the controller
+            moveDirection.y -= gravity * Time.deltaTime;
+
+            y = moveDirection.y;
         }
     }
 }
