@@ -1,10 +1,5 @@
 
 Temp/UnityLockfile
 *.zip
-Builds/GYARTE_Project_Data/globalgamemanagers
-Builds/GYARTE_Project_Data/globalgamemanagers.assets
-Builds/GYARTE_Project_Data/level0
-Builds/GYARTE_Project_Data/level1
-Builds/GYARTE_Project_Data/level2
-Builds/GYARTE_Project_Data/Managed/Assembly-CSharp.dll
+Builds/
 *.rar
