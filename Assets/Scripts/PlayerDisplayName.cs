@@ -23,6 +23,14 @@ namespace Assets.Scripts
             }
         }
 
+        void Start()
+        {
+            if (IsOwner)
+            {
+                DisplayText.enabled = false;
+            }
+        }
+
         private NetworkVariableString DisplayVar = new NetworkVariableString();
 
         private void OnEnable()
@@ -38,6 +46,14 @@ namespace Assets.Scripts
         private void HandleNameChange(string previousValue, string newValue)
         {
             DisplayText.text = newValue;
+        }
+
+        void Update()
+        {
+            if (IsOwner) return;
+
+            transform.LookAt(Camera.main.transform);
+            Debug.Log("Rotated the text");
         }
     }
 }
