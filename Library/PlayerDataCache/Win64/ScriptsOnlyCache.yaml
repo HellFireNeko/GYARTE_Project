@@ -5,12 +5,18 @@ ScriptsOnlyBuild:
     - LobbyNetworkBehavior
     - NetworkedClient
     - SpawnPosition
+    Unity.Multiplayer.MLAPI.Editor.dll:
+    - UnityEditor.NetworkBehaviourEditor
+    - UnityEditor.NetworkObjectEditor
     Unity.Multiplayer.MLAPI.Prototyping.dll:
     - MLAPI.Prototyping.NetworkTransform
     Unity.Multiplayer.MLAPI.Runtime.dll:
     - MLAPI.NetworkManager
     - MLAPI.NetworkObject
     - MLAPI.Transports.UNET.UNetTransport
+    Unity.ProBuilder.Editor.dll:
+    - UnityEditor.ProBuilder.EditorToolbar
+    - UnityEditor.ProBuilder.ProBuilderEditor
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro.dll:
@@ -67,51 +73,51 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1502}
+      Script: {instanceID: 1528}
     - Class: 114
-      Script: {instanceID: 1504}
+      Script: {instanceID: 1530}
     - Class: 114
-      Script: {instanceID: 1612}
+      Script: {instanceID: 1622}
     - Class: 114
-      Script: {instanceID: 1714}
+      Script: {instanceID: 1724}
     - Class: 114
-      Script: {instanceID: 1858}
+      Script: {instanceID: 1868}
     - Class: 114
-      Script: {instanceID: 2188}
+      Script: {instanceID: 2198}
     - Class: 114
-      Script: {instanceID: 2548}
+      Script: {instanceID: 2474}
     - Class: 114
-      Script: {instanceID: 2672}
+      Script: {instanceID: 2560}
     - Class: 114
-      Script: {instanceID: 2718}
+      Script: {instanceID: 2684}
     - Class: 114
-      Script: {instanceID: 3070}
+      Script: {instanceID: 2730}
     - Class: 114
-      Script: {instanceID: 3116}
+      Script: {instanceID: 3082}
     - Class: 114
-      Script: {instanceID: 3156}
+      Script: {instanceID: 3128}
     - Class: 114
-      Script: {instanceID: 3230}
+      Script: {instanceID: 3168}
     - Class: 114
-      Script: {instanceID: 3744}
+      Script: {instanceID: 3242}
     - Class: 114
-      Script: {instanceID: 3854}
+      Script: {instanceID: 3756}
     - Class: 114
-      Script: {instanceID: 3940}
+      Script: {instanceID: 3866}
     - Class: 114
-      Script: {instanceID: 4444}
+      Script: {instanceID: 3952}
     - Class: 114
-      Script: {instanceID: 4462}
+      Script: {instanceID: 4214}
     - Class: 114
-      Script: {instanceID: 4726}
+      Script: {instanceID: 4458}
     - Class: 114
-      Script: {instanceID: 4770}
+      Script: {instanceID: 4476}
     - Class: 114
-      Script: {instanceID: 19580}
+      Script: {instanceID: 4710}
     - Class: 114
-      Script: {instanceID: 20558}
+      Script: {instanceID: 4742}
     - Class: 114
-      Script: {instanceID: 26298}
+      Script: {instanceID: 4786}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -263,6 +269,12 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
+      Hash: 6597aa89fc469440dd54d21b71cc664a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SpawnPosition
+  - hash:
+      serializedVersion: 2
       Hash: a1aa98c78061c6f03a8c124cda576e67
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -353,7 +365,7 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: 806830a13f6959de8eb12c3e7f94c0e9
+      Hash: 18a22f2d6a1fad4f5e215b7abdc5a02d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NetworkedClient
@@ -605,6 +617,12 @@ ScriptsOnlyBuild:
     className: DebugLogPopup
   - hash:
       serializedVersion: 2
+      Hash: aba81c00cfc73cce4f204012be1d7348
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LobbyNetworkBehavior
+  - hash:
+      serializedVersion: 2
       Hash: 7b8e35aaa6eea62ffaf8841b0ad9416d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -689,6 +707,12 @@ ScriptsOnlyBuild:
     className: TMP_SubMeshUI
   - hash:
       serializedVersion: 2
+      Hash: 0298b1ddb85aa5d44116fd68d3e0a4c9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Assets.Scripts
+    className: PlayerDisplayName
+  - hash:
+      serializedVersion: 2
       Hash: e7182e6d337b73771f0d7b32eb22e341
     assemblyName: Unity.Multiplayer.MLAPI.Runtime.dll
     namespaceName: MLAPI
@@ -753,24 +777,6 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: TouchInputModule
-  - hash:
-      serializedVersion: 2
-      Hash: 81c8ebc091cbdb3e0aab39536ec9ef87
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: LobbyNetworkBehavior
-  - hash:
-      serializedVersion: 2
-      Hash: 0298b1ddb85aa5d44116fd68d3e0a4c9
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: Assets.Scripts
-    className: PlayerDisplayName
-  - hash:
-      serializedVersion: 2
-      Hash: 6597aa89fc469440dd54d21b71cc664a
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: SpawnPosition
   platform: 19
   scenePathNames:
   - Assets/Scenes/DevLobby.unity

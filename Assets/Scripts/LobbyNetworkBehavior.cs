@@ -1,9 +1,11 @@
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using MLAPI;
 using TMPro;
 using MLAPI.Transports.UNET;
+using MLAPI.Messaging;
 
 public class LobbyNetworkBehavior : MonoBehaviour
 {
@@ -19,6 +21,8 @@ public class LobbyNetworkBehavior : MonoBehaviour
     [SerializeField] private GameObject StartObject;
 
     [SerializeField] private List<SpawnPosition> SpawnPoints;
+    [SerializeField] private List<SpawnPosition> GameStartPositionsHunter;
+    [SerializeField] private List<SpawnPosition> GameStartPositionsRunners;
 
     private static Dictionary<ulong, PlayerData> ClientData;
 
@@ -50,6 +54,8 @@ public class LobbyNetworkBehavior : MonoBehaviour
                 ClientButton.interactable = true;
             }
         });
+
+        StartButton.onClick.AddListener(OnGameStartServerRpc);
     }
 
     void Update()
@@ -199,7 +205,50 @@ public class LobbyNetworkBehavior : MonoBehaviour
 
         callback(true, null, ApproveConnection, spawnPos, null);
     }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void OnGameStartServerRpc()
+    {
+        LeaveObject.SetActive(false);
+        StartObject.SetActive(false);
+        var arr = NetworkManager.Singleton.ConnectedClients.Keys.ToArray();
+        ulong id = arr[Random.Range(0, arr.Length - 1)];
+        NetworkManager.Singleton.ConnectedClients[id].PlayerObject.GetComponent<NetworkedClient>().SetRoleClientRpc(PlayerRole.Hunter.ToString());
+        var position = GameStartPositionsHunter[Random.Range(0, GameStartPositionsHunter.Count - 1)];
+        NetworkManager.Singleton.ConnectedClients[id].PlayerObject.transform.SetPositionAndRotation(position.transform.position, position.transform.rotation);
+        NetworkManager.Singleton.ConnectedClients[id].PlayerObject.GetComponent<NetworkedClient>().InitClientRpc();
+        foreach (var id1 in arr)
+        {
+            if (id1 != id)
+            {
+                NetworkManager.Singleton.ConnectedClients[id1].PlayerObject.GetComponent<NetworkedClient>().SetRoleClientRpc(PlayerRole.Runner.ToString());
+                var p1 = GameStartPositionsRunners[Random.Range(0, GameStartPositionsRunners.Count - 1)];
+                NetworkManager.Singleton.ConnectedClients[id1].PlayerObject.transform.SetPositionAndRotation(p1.transform.position, p1.transform.rotation);
+                NetworkManager.Singleton.ConnectedClients[id1].PlayerObject.GetComponent<NetworkedClient>().InitClientRpc();
+            }
+        }
+    }
+
+    private void OnGameEnd(GameState state)
+    {
+        switch (state)
+        {
+            case GameState.EndCondition_Capture:
+                break;
+
+            case GameState.EndCondition_Timeout:
+                break;
+        }
+    }
 }
+
+public enum GameState
+{
+    Playing,
+    Lobby,
+    EndCondition_Timeout,
+    EndCondition_Capture
+};
 
 public struct PlayerData
 {
