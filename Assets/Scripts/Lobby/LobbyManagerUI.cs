@@ -30,6 +30,16 @@ public class LobbyManagerUI : MonoBehaviour
         return null;
     }
 
+    public static void ModifyPlayerModelId(ulong clientId, int modelId)
+    {
+        if (ClientData.TryGetValue(clientId, out NetworkPlayerData r))
+        {
+            r.ModelId = modelId;
+            ClientData[clientId] = r;
+        }
+        throw new System.Exception();
+    }
+
     public Button GetLobbyReadyButton()
     {
         return LobbyPanel.ReadyButton;

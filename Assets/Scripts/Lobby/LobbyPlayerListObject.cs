@@ -26,8 +26,10 @@ public class LobbyPlayerListObject : NetworkBehaviour
 
     private NetworkVariableString PlayerName = new NetworkVariableString("Display name");
     private NetworkVariableBool Ready = new NetworkVariableBool(false);
+    private NetworkVariableInt Texture = new NetworkVariableInt();
 
     private Button ReadyButton;
+    private ModelSelector ModelPicker;
 
     public override void NetworkStart()
     {
@@ -41,6 +43,7 @@ public class LobbyPlayerListObject : NetworkBehaviour
             var modelData = Selector.GetItemById(data.Value.ModelId);
             if (modelData.HasValue)
             {
+                Texture.Value = data.Value.ModelId;
                 PlayerModelView.texture = modelData.Value.Texture;
             }
         }
@@ -51,23 +54,46 @@ public class LobbyPlayerListObject : NetworkBehaviour
         if (IsOwner)
         {
             ReadyButton = LobbyManagerUI.Instance.GetLobbyReadyButton();
+            ModelPicker = FindObjectOfType<ModelSelector>();
             if (ReadyButton != null)
             {
                 ReadyButton.onClick.AddListener(ToggleReadyServerRpc);
             }
             else
                 Debug.LogError("Failed to get lobby button");
+
+            ModelPicker.OnSelectionChanged.AddListener((model) =>
+            {
+                SetPlayerModelServerRpc(model.ID);
+            });
         }
+    }
+
+    [ServerRpc]
+    private void SetPlayerModelServerRpc(int model)
+    {
+        Texture.Value = model;
     }
 
     void OnEnable()
     {
         PlayerName.OnValueChanged += HandleNameChange;
+        Texture.OnValueChanged += HandleTextureChange;
     }
 
     void OnDisable()
     {
         PlayerName.OnValueChanged -= HandleNameChange;
+        Texture.OnValueChanged -= HandleTextureChange;
+    }
+
+    private void HandleTextureChange(int previousValue, int newValue)
+    {
+        var modelData = Selector.GetItemById(newValue);
+        if (modelData.HasValue)
+        {
+            PlayerModelView.texture = modelData.Value.Texture;
+        }
     }
 
     private void HandleNameChange(string previousValue, string newValue)

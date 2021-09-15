@@ -15,3 +15,5 @@ MonoBehaviour:
   PlayerModelObjects:
   - Texture: {fileID: 8400000, guid: 285d20e708b6b06478a606ee37abaf9c, type: 2}
     Model: {fileID: 2495362035135919338, guid: ec43bee4054042b4e919cab039ceeeb5, type: 3}
+  - Texture: {fileID: 8400000, guid: 648ead90c993734468e094f7279852af, type: 2}
+    Model: {fileID: 3389993592984030365, guid: eaca3f8dc686051479559d2864839a9d, type: 3}
