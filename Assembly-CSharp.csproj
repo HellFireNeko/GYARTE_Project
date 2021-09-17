@@ -73,6 +73,8 @@
     <Compile Include="Assets\Scripts\PlayerDisplayName.cs" />
     <Compile Include="Assets\Scripts\LobbyBehavior.cs" />
     <Compile Include="Assets\Scripts\NetworkServer.cs" />
+    <Compile Include="Assets\Scripts\Loc\Localization.cs" />
+    <Compile Include="Assets\Scripts\Loc\ILocalizable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

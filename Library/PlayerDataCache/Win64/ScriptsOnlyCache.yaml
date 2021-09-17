@@ -2,6 +2,7 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - Assets.Scripts.PlayerDisplayName
+    - ILocalizable
     - LobbyManagerUI
     - LobbyPlayerList
     - LobbyPlayerListObject
@@ -14,12 +15,10 @@ ScriptsOnlyBuild:
     - MLAPI.NetworkManager
     - MLAPI.NetworkObject
     - MLAPI.Transports.UNET.UNetTransport
-    Unity.ProBuilder.Editor.dll:
-    - UnityEditor.ProBuilder.EditorToolbar
-    - UnityEditor.ProBuilder.ProBuilderEditor
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro.dll:
+    - TMPro.TMP_Dropdown
     - TMPro.TMP_FontAsset
     - TMPro.TMP_InputField
     - TMPro.TMP_Settings
@@ -42,8 +41,12 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.HorizontalLayoutGroup
     - UnityEngine.UI.Image
     - UnityEngine.UI.LayoutElement
+    - UnityEngine.UI.Mask
     - UnityEngine.UI.RawImage
     - UnityEngine.UI.RectMask2D
+    - UnityEngine.UI.ScrollRect
+    - UnityEngine.UI.Scrollbar
+    - UnityEngine.UI.Toggle
   sceneClasses:
     Assets/Scenes/UITest.unity:
     - Class: 1
@@ -83,61 +86,73 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1530}
     - Class: 114
-      Script: {instanceID: 1622}
+      Script: {instanceID: 1750}
     - Class: 114
-      Script: {instanceID: 1724}
+      Script: {instanceID: 1836}
     - Class: 114
-      Script: {instanceID: 1788}
+      Script: {instanceID: 1852}
     - Class: 114
-      Script: {instanceID: 1868}
+      Script: {instanceID: 1916}
     - Class: 114
-      Script: {instanceID: 2198}
+      Script: {instanceID: 1996}
     - Class: 114
-      Script: {instanceID: 2354}
+      Script: {instanceID: 2326}
     - Class: 114
-      Script: {instanceID: 2358}
+      Script: {instanceID: 2482}
     - Class: 114
-      Script: {instanceID: 2376}
+      Script: {instanceID: 2486}
     - Class: 114
-      Script: {instanceID: 2564}
+      Script: {instanceID: 2504}
     - Class: 114
-      Script: {instanceID: 2688}
+      Script: {instanceID: 2692}
     - Class: 114
-      Script: {instanceID: 2734}
+      Script: {instanceID: 2816}
     - Class: 114
-      Script: {instanceID: 2898}
+      Script: {instanceID: 2826}
     - Class: 114
-      Script: {instanceID: 3088}
+      Script: {instanceID: 2862}
     - Class: 114
-      Script: {instanceID: 3134}
+      Script: {instanceID: 3026}
     - Class: 114
-      Script: {instanceID: 3174}
+      Script: {instanceID: 3216}
     - Class: 114
-      Script: {instanceID: 3248}
+      Script: {instanceID: 3262}
     - Class: 114
-      Script: {instanceID: 3422}
+      Script: {instanceID: 3276}
     - Class: 114
-      Script: {instanceID: 3450}
+      Script: {instanceID: 3302}
     - Class: 114
-      Script: {instanceID: 3466}
+      Script: {instanceID: 3376}
     - Class: 114
-      Script: {instanceID: 3766}
+      Script: {instanceID: 3550}
     - Class: 114
-      Script: {instanceID: 3876}
+      Script: {instanceID: 3578}
     - Class: 114
-      Script: {instanceID: 3962}
+      Script: {instanceID: 3594}
     - Class: 114
-      Script: {instanceID: 4468}
+      Script: {instanceID: 3894}
     - Class: 114
-      Script: {instanceID: 4486}
+      Script: {instanceID: 4004}
     - Class: 114
-      Script: {instanceID: 4720}
+      Script: {instanceID: 4090}
     - Class: 114
-      Script: {instanceID: 4752}
+      Script: {instanceID: 4320}
     - Class: 114
-      Script: {instanceID: 4796}
+      Script: {instanceID: 4500}
     - Class: 114
-      Script: {instanceID: 5218}
+      Script: {instanceID: 4596}
+    - Class: 114
+      Script: {instanceID: 4614}
+    - Class: 114
+      Script: {instanceID: 4848}
+    - Class: 114
+      Script: {instanceID: 4880}
+    - Class: 114
+      Script: {instanceID: 4924}
+    - Class: 114
+      Script: {instanceID: 5346}
+    - Class: 114
+      Script: {instanceID: 26992}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -293,7 +308,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: 355750fdb164e90433d606aaf0106fb9
+      Hash: 14e7665665a274dc34b6f9e2504e8764
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: LobbyManagerUI
@@ -831,7 +846,13 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: TouchInputModule
+  - hash:
+      serializedVersion: 2
+      Hash: a1dfc8230d130057c02b6cc45233f311
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ILocalizable
   platform: 19
   scenePathNames:
   - Assets/Scenes/UITest.unity
-  playerPath: C:/Users/johnt/Desktop/Projects/Unity projects/GYARTE_Project/Builds/GYARTE_Project.exe
+  playerPath: C:/Users/theo.flink/GYARTE_Project/Builds/GYARTE_Project.exe

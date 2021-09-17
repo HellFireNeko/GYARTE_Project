@@ -1,0 +1,12 @@
+{
+	"play": "Spela",
+    "exit": "Avsluta",
+    "start": "Starta",
+    "connect": "Anslut",
+    "host": "Värd",
+    "name": "Namn",
+    "password": "Lösenord",
+    "leave": "Lämna",
+    "ready": "Redo",
+    "not ready": "Inte redo"
+}

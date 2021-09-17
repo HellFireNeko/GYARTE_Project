@@ -112,12 +112,12 @@ public class LobbyPlayerListObject : NetworkBehaviour
         if (Ready.Value)
         {
             ReadyPanel.color = ReadyColor;
-            ReadyText.text = "Ready";
+            ReadyText.text = Localization.GetString("ready");
         }
         else
         {
             ReadyPanel.color = NotReadyColor;
-            ReadyText.text = "Not ready";
+            ReadyText.text = Localization.GetString("not ready");
         }
     }
 

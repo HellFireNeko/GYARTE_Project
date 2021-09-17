@@ -1,4 +1,6 @@
+using System.IO;
 using System.Net;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,12 +16,24 @@ public class LobbyManagerUI : MonoBehaviour
 
     [Header("Lobby assignments:")]
     [SerializeField] private GameObject LobbyGroupPanel;
-    [SerializeField] private LobbyPanelObjects LobbyPanel;
+    [SerializeField] private LobbyObjects LobbyPanel;
+    [Header("Connection assignments:")]
+    [SerializeField] private GameObject ConnectionGroupPanel;
+    [SerializeField] private ConnectionObjects ConnectionPanel;
     [Header("Main menu assignments:")]
     [SerializeField] private GameObject MainMenuGroupPanel;
-    [SerializeField] private MainMenuPanelObjects MainPanel;
+    [SerializeField] private MainMenuObjects MainPanel;
 
+    private int ConnectedClients;
     private static Dictionary<ulong, NetworkPlayerData> ClientData;
+
+    private void SetActivePanel(GameObject panel)
+    {
+        LobbyGroupPanel.SetActive(false);
+        ConnectionGroupPanel.SetActive(false);
+        MainMenuGroupPanel.SetActive(false);
+        panel.SetActive(true);
+    }
 
     public static NetworkPlayerData? GetPlayerData(ulong clientId)
     {
@@ -47,6 +61,8 @@ public class LobbyManagerUI : MonoBehaviour
 
     void Start()
     {
+        SetActivePanel(MainMenuGroupPanel);
+
         Application.quitting += () =>
         {
             if (NetworkManager.Singleton.IsHost)
@@ -69,58 +85,90 @@ public class LobbyManagerUI : MonoBehaviour
                 NetworkManager.Singleton.StopClient();
             }
 
-            LobbyGroupPanel.SetActive(false);
-            MainMenuGroupPanel.SetActive(true);
+            SetActivePanel(ConnectionGroupPanel);
+        });
+
+        ConnectionPanel.Init();
+
+        ConnectionPanel.HostButton.onClick.AddListener(() =>
+        {
+            ClientData = new Dictionary<ulong, NetworkPlayerData>();
+            ClientData[NetworkManager.Singleton.LocalClientId] = new NetworkPlayerData(ConnectionPanel.NameInputField.text);
+
+            var transport = NetworkManager.Singleton.GetComponent<UNetTransport>();
+            transport.ConnectAddress = ConnectionPanel.IpInputField.text;
+            transport.ConnectPort = int.Parse(ConnectionPanel.PortInputField.text);
+            transport.ServerListenPort = int.Parse(ConnectionPanel.PortInputField.text);
+            transport.MaxConnections = 6;
+            NetworkManager.Singleton.ConnectionApprovalCallback += Singleton_ConnectionApprovalCallback;
+            NetworkManager.Singleton.StartHost();
+            SetActivePanel(LobbyGroupPanel);
+            LobbyPanel.StartButton.gameObject.SetActive(true);
+        });
+
+        ConnectionPanel.ConnectButton.onClick.AddListener(() =>
+        {
+            var transport = NetworkManager.Singleton.GetComponent<UNetTransport>();
+            transport.ConnectAddress = ConnectionPanel.IpInputField.text;
+            transport.ConnectPort = int.Parse(ConnectionPanel.PortInputField.text);
+            var payload = Newtonsoft.Json.JsonConvert.SerializeObject(new ConnectionPayload() { Name = ConnectionPanel.NameInputField.text, Password = ConnectionPanel.PasswordInputField.text });
+            NetworkManager.Singleton.NetworkConfig.ConnectionData = System.Text.Encoding.ASCII.GetBytes(payload);
+            NetworkManager.Singleton.StartClient();
+            ConnectionPanel.SetValidation(false);
+            ConnectionPanel.RunValidationChecks();
+            Invoke("ReEnableButtons", 10);
+        });
+
+        ConnectionPanel.ReturnButton.onClick.AddListener(() =>
+        {
+            SetActivePanel(MainMenuGroupPanel);
+        });
+
+        MainPanel.PlayButton.onClick.AddListener(() =>
+        {
+            SetActivePanel(ConnectionGroupPanel);
+        });
+
+        MainPanel.LanguageSelect.onValueChanged.AddListener(x =>
+        {
+            var lang = new Languages();
+            var selection = lang.Langs[MainPanel.LanguageSelect.options[x].text];
+            File.WriteAllText("loqSettings.txt", selection);
+            ILocalizable.UpdateLoq();
         });
 
         MainPanel.Init();
 
-        MainPanel.HostButton.onClick.AddListener(() =>
-        {
-            ClientData = new Dictionary<ulong, NetworkPlayerData>();
-            ClientData[NetworkManager.Singleton.LocalClientId] = new NetworkPlayerData(MainPanel.NameInputField.text);
+        var l = new Languages();
+        MainPanel.LanguageSelect.AddOptions(l.Langs.Keys.ToList());
 
-            var transport = NetworkManager.Singleton.GetComponent<UNetTransport>();
-            transport.ConnectAddress = MainPanel.IpInputField.text;
-            transport.ConnectPort = int.Parse(MainPanel.PortInputField.text);
-            transport.ServerListenPort = int.Parse(MainPanel.PortInputField.text);
-            //transport.MLAPIRelayPort = int.Parse(MainPanel.PortInputField.text);
-            //string externalIpString = new WebClient().DownloadString("http://icanhazip.com").Replace("\\r\\n", "").Replace("\\n", "").Trim();
-            //var externalIp = IPAddress.Parse(externalIpString);
-            //transport.MLAPIRelayAddress = externalIp.ToString();
-            transport.MaxConnections = 6;
-            NetworkManager.Singleton.ConnectionApprovalCallback += Singleton_ConnectionApprovalCallback;
-            NetworkManager.Singleton.StartHost();
-            MainMenuGroupPanel.SetActive(false);
-            LobbyGroupPanel.SetActive(true);
-            LobbyPanel.StartButton.gameObject.SetActive(true);
-        });
-
-        MainPanel.ConnectButton.onClick.AddListener(() =>
+        if (!File.Exists("loqSettings.txt")) File.WriteAllText("loqSettings.txt", "eng");
+        var a = File.ReadAllText("loqSettings.txt");
+        int i = 0;
+        foreach (var item in l.Langs.Values)
         {
-            var transport = NetworkManager.Singleton.GetComponent<UNetTransport>();
-            transport.ConnectAddress = MainPanel.IpInputField.text;
-            transport.ConnectPort = int.Parse(MainPanel.PortInputField.text);
-            var payload = Newtonsoft.Json.JsonConvert.SerializeObject(new ConnectionPayload() { Name = MainPanel.NameInputField.text, Password = MainPanel.PasswordInputField.text });
-            NetworkManager.Singleton.NetworkConfig.ConnectionData = System.Text.Encoding.ASCII.GetBytes(payload);
-            NetworkManager.Singleton.StartClient();
-            MainPanel.SetValidation(false);
-            MainPanel.RunValidationChecks();
-            Invoke("ReEnableButtons", 10);
-        });
+            if (!(item == a))
+            {
+                i++;
+                continue;
+            }
+            break;
+        }
+        MainPanel.LanguageSelect.value = i;
+        ILocalizable.UpdateLoq();
     }
 
     private void ReEnableButtons()
     {
-        MainPanel.SetValidation(true);
-        MainPanel.RunValidationChecks();
+        ConnectionPanel.SetValidation(true);
+        ConnectionPanel.RunValidationChecks();
     }
 
     private void Singleton_ConnectionApprovalCallback(byte[] data, ulong clientId, NetworkManager.ConnectionApprovedDelegate callback)
     {
         var payload = Newtonsoft.Json.JsonConvert.DeserializeObject<ConnectionPayload>(System.Text.Encoding.ASCII.GetString(data));
 
-        bool ApproveConnection = payload.Password == MainPanel.PasswordInputField.text;
+        bool ApproveConnection = payload.Password == ConnectionPanel.PasswordInputField.text;
 
         if (ApproveConnection)
         {
@@ -137,6 +185,7 @@ public class LobbyManagerUI : MonoBehaviour
 
     private void HandleServerStart()
     {
+        ConnectedClients = 1;
         if (NetworkManager.Singleton.IsHost)
         {
             HandleClientConnect(NetworkManager.Singleton.LocalClientId);
@@ -148,12 +197,15 @@ public class LobbyManagerUI : MonoBehaviour
     {
         if (NetworkManager.Singleton.LocalClientId == clientId)
         {
-            MainMenuGroupPanel.SetActive(false);
-            LobbyGroupPanel.SetActive(true);
+            SetActivePanel(LobbyGroupPanel);
         }
         if (!NetworkManager.Singleton.IsHost)
         {
             LobbyPanel.StartButton.gameObject.SetActive(false);
+        }
+        else
+        {
+            ConnectedClients++;
         }
     }
 
@@ -161,14 +213,17 @@ public class LobbyManagerUI : MonoBehaviour
     {
         if (NetworkManager.Singleton.LocalClientId == clientId)
         {
-            LobbyGroupPanel.SetActive(false);
-            MainMenuGroupPanel.SetActive(true);
+            SetActivePanel(ConnectionGroupPanel);
+        }
+        if (NetworkManager.Singleton.IsHost)
+        {
+            ConnectedClients--;
         }
     }
 }
 
 [System.Serializable]
-public class LobbyPanelObjects
+public class LobbyObjects
 {
     public Button LeaveButton;
     public Button ReadyButton;
@@ -177,7 +232,7 @@ public class LobbyPanelObjects
 }
 
 [System.Serializable]
-public class MainMenuPanelObjects
+public class ConnectionObjects
 {
     public TMP_InputField IpInputField;
     public TMP_InputField PortInputField;
@@ -185,7 +240,7 @@ public class MainMenuPanelObjects
     public TMP_InputField NameInputField;
     public Button HostButton;
     public Button ConnectButton;
-    [SerializeField] private Button ExitButton;
+    public Button ReturnButton;
 
     [SerializeField] private bool nameValid = false;
     [SerializeField] private bool portValid = false;
@@ -227,11 +282,6 @@ public class MainMenuPanelObjects
         });
 
         IpInputField.onValueChanged.Invoke(IpInputField.text);
-
-        ExitButton.onClick.AddListener(() =>
-        {
-            Application.Quit();
-        });
     }
 
     public void RunValidationChecks()
@@ -241,6 +291,22 @@ public class MainMenuPanelObjects
             state = true;
         HostButton.interactable = state;
         ConnectButton.interactable = state;
+    }
+}
+
+[System.Serializable]
+public class MainMenuObjects
+{
+    public Button PlayButton;
+    public TMP_Dropdown LanguageSelect;
+    [SerializeField] private Button ExitButton;
+
+    public void Init()
+    {
+        ExitButton.onClick.AddListener(() =>
+        {
+            Application.Quit();
+        });
     }
 }
 
