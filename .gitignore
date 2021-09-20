@@ -2,5 +2,6 @@
 Temp/UnityLockfile
 *.zip
 Builds/
+Library/Artifacts/
 *.rar
 .vs/GYARTE_Project/v16/.suo
