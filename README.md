@@ -2,7 +2,8 @@
 A 3D Multiplayer game made in Unity, using the MLAPI.
 
 * Player count: 3-6
-* Connection method: Portforward
+* Hosting method: Portforward
+* Connection method: Discord and Direct connect
 
 ## Contributors and areas of work:
 * Abdl Rahman MAkkieyeh SU19 - Digital design
