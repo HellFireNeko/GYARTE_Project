@@ -3,12 +3,17 @@ using System.Net;
 using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
+
 using TMPro;
+
 using MLAPI;
 using MLAPI.Transports.UNET;
 using MLAPI.Spawning;
+
+using Newtonsoft.Json;
 
 public class LobbyManagerUI : MonoBehaviour
 {
@@ -111,7 +116,7 @@ public class LobbyManagerUI : MonoBehaviour
             var transport = NetworkManager.Singleton.GetComponent<UNetTransport>();
             transport.ConnectAddress = ConnectionPanel.IpInputField.text;
             transport.ConnectPort = int.Parse(ConnectionPanel.PortInputField.text);
-            var payload = Newtonsoft.Json.JsonConvert.SerializeObject(new ConnectionPayload() { Name = ConnectionPanel.NameInputField.text, Password = ConnectionPanel.PasswordInputField.text });
+            var payload = JsonConvert.SerializeObject(new ConnectionPayload() { Name = ConnectionPanel.NameInputField.text, Password = ConnectionPanel.PasswordInputField.text });
             NetworkManager.Singleton.NetworkConfig.ConnectionData = System.Text.Encoding.ASCII.GetBytes(payload);
             NetworkManager.Singleton.StartClient();
             ConnectionPanel.SetValidation(false);
@@ -158,6 +163,24 @@ public class LobbyManagerUI : MonoBehaviour
         ILocalizable.UpdateLoq();
     }
 
+    void Update()
+    {
+        if (NetworkManager.Singleton != null)
+        {
+            if (NetworkManager.Singleton.IsHost)
+            {
+                if (ConnectedClients > 3)
+                {
+                    LobbyPanel.StartButton.interactable = true;
+                }
+                else
+                {
+                    LobbyPanel.StartButton.interactable = false;
+                }
+            }
+        }
+    }
+
     private void ReEnableButtons()
     {
         ConnectionPanel.SetValidation(true);
@@ -166,7 +189,7 @@ public class LobbyManagerUI : MonoBehaviour
 
     private void Singleton_ConnectionApprovalCallback(byte[] data, ulong clientId, NetworkManager.ConnectionApprovedDelegate callback)
     {
-        var payload = Newtonsoft.Json.JsonConvert.DeserializeObject<ConnectionPayload>(System.Text.Encoding.ASCII.GetString(data));
+        var payload = JsonConvert.DeserializeObject<ConnectionPayload>(System.Text.Encoding.ASCII.GetString(data));
 
         bool ApproveConnection = payload.Password == ConnectionPanel.PasswordInputField.text;
 
@@ -195,6 +218,8 @@ public class LobbyManagerUI : MonoBehaviour
 
     private void HandleClientConnect(ulong clientId)
     {
+        CancelInvoke("ReEnableButtons");
+        ReEnableButtons();
         if (NetworkManager.Singleton.LocalClientId == clientId)
         {
             SetActivePanel(LobbyGroupPanel);
@@ -242,6 +267,8 @@ public class ConnectionObjects
     public Button ConnectButton;
     public Button ReturnButton;
 
+    public ConnectionPanelData panelData = ConnectionPanelData.GetData(string.Empty, 0, string.Empty);
+
     [SerializeField] private bool nameValid = false;
     [SerializeField] private bool portValid = false;
     [SerializeField] private bool ipValid = false;
@@ -251,21 +278,36 @@ public class ConnectionObjects
 
     public void Init()
     {
+        IpInputField.SetTextWithoutNotify(panelData.ip);
+        PortInputField.SetTextWithoutNotify(panelData.port.ToString());
+        NameInputField.SetTextWithoutNotify(panelData.name);
+        RunValidationChecks();
+
         NameInputField.onValueChanged.AddListener(x =>
         {
             bool state = false;
             if (x.Length > 0)
+            {
                 state = true;
+                panelData.name = x;
+            }
             nameValid = state;
             RunValidationChecks();
         });
+
+        NameInputField.onValueChanged.Invoke(NameInputField.text);
 
         PortInputField.onValueChanged.AddListener(x =>
         {
             bool state = false;
             if (int.TryParse(x, out int val))
+            {
                 if (val >= 2000)
+                {
                     state = true;
+                    panelData.port = int.Parse(x);
+                }
+            }
             portValid = state;
             RunValidationChecks();
         });
@@ -276,7 +318,10 @@ public class ConnectionObjects
         {
             bool state = false;
             if (IPAddress.TryParse(x, out IPAddress ip))
+            {
                 state = true;
+                panelData.ip = x;
+            }
             ipValid = state;
             RunValidationChecks();
         });
@@ -319,5 +364,72 @@ public struct NetworkPlayerData
     {
         Name = name;
         ModelId = modelId;
+    }
+}
+
+[JsonObject(memberSerialization: MemberSerialization.OptIn)]
+public class ConnectionPanelData
+{
+    [JsonProperty] private string IP { get; set; }
+    public string ip 
+    {
+        get 
+        {
+            return IP; 
+        }
+        set
+        {
+            IP = value;
+            File.WriteAllText("dat.json", JsonConvert.SerializeObject(this, Formatting.Indented));
+        } 
+    }
+
+    [JsonProperty] private int Port { get; set; }
+    public int port
+    {
+        get
+        {
+            return Port;
+        }
+        set
+        {
+            Port = value;
+            File.WriteAllText("dat.json", JsonConvert.SerializeObject(this, Formatting.Indented));
+        }
+    }
+
+    [JsonProperty] private string Name { get; set; }
+    public string name 
+    {
+        get
+        {
+            return Name;
+        }
+        set
+        {
+            Name = value;
+            File.WriteAllText("dat.json", JsonConvert.SerializeObject(this, Formatting.Indented));
+        }
+    }
+
+    public ConnectionPanelData(string iP, int port, string name)
+    {
+        IP = iP;
+        Port = port;
+        Name = name;
+    }
+
+    public static ConnectionPanelData GetData(string iP, int port, string name)
+    {
+        if (File.Exists("dat.json"))
+        {
+            return JsonConvert.DeserializeObject<ConnectionPanelData>(File.ReadAllText("dat.json"));
+        }
+        else
+        {
+            var d = new ConnectionPanelData(iP, port, name);
+            File.WriteAllText("dat.json", JsonConvert.SerializeObject(d, Formatting.Indented));
+            return d;
+        }
     }
 }

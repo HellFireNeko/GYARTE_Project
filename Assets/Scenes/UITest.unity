@@ -3225,6 +3225,7 @@ GameObject:
   - component: {fileID: 830745373}
   - component: {fileID: 830745375}
   - component: {fileID: 830745374}
+  - component: {fileID: 830745376}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -3348,6 +3349,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830745372}
   m_CullTransparentMesh: 1
+--- !u!114 &830745376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830745372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20e9193b18b44744bb605c0f94382d15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LoqKey: return
 --- !u!1 &834894446
 GameObject:
   m_ObjectHideFlags: 0
@@ -7680,7 +7694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2495362035135919338, guid: ec43bee4054042b4e919cab039ceeeb5, type: 3}
       propertyPath: m_Name
-      value: DebugPlayer
+      value: Bean
       objectReference: {fileID: 0}
     - target: {fileID: 3033276040880890986, guid: ec43bee4054042b4e919cab039ceeeb5, type: 3}
       propertyPath: m_Enabled

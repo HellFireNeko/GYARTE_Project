@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,6 +53,9 @@
     <UnityVersion>2020.3.16f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Preview\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Scripts\ServerObject.cs" />
     <Compile Include="Assets\Scripts\Lobby\LobbyManagerUI.cs" />
     <Compile Include="Assets\Scripts\Lobby\ModelSelector.cs" />
@@ -61,8 +64,10 @@
     <Compile Include="Assets\Scripts\DebugTriggerShow.cs" />
     <Compile Include="Assets\Scripts\NetworkedClient.cs" />
     <Compile Include="Assets\Scripts\MovementCharacter.cs" />
+    <Compile Include="Assets\Scripts\Loc\ILocalizable.cs" />
     <Compile Include="Assets\Scripts\Lobby\LobbyPlayerListObject.cs" />
     <Compile Include="Assets\Scripts\Lobby\PlayerModelSelector.cs" />
+    <Compile Include="Assets\Scripts\Loc\Localization.cs" />
     <Compile Include="Assets\Scripts\PlayerList.cs" />
     <Compile Include="Assets\Scripts\DoNotDestroy.cs" />
     <Compile Include="Assets\Scripts\LobbyNetworkBehavior.cs" />
@@ -73,8 +78,6 @@
     <Compile Include="Assets\Scripts\PlayerDisplayName.cs" />
     <Compile Include="Assets\Scripts\LobbyBehavior.cs" />
     <Compile Include="Assets\Scripts\NetworkServer.cs" />
-    <Compile Include="Assets\Scripts\Loc\Localization.cs" />
-    <Compile Include="Assets\Scripts\Loc\ILocalizable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

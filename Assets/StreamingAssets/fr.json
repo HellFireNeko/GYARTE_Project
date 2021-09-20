@@ -8,5 +8,6 @@
     "password": "Mot de passe",
     "leave": "Quitter",
     "ready": "Prêt",
-    "not ready": "Pas prêt"
+    "not ready": "Pas prêt",
+    "return": "Return"
 }

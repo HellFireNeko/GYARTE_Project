@@ -86,73 +86,73 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1530}
     - Class: 114
-      Script: {instanceID: 1750}
+      Script: {instanceID: 1758}
     - Class: 114
-      Script: {instanceID: 1836}
+      Script: {instanceID: 1844}
     - Class: 114
-      Script: {instanceID: 1852}
+      Script: {instanceID: 1860}
     - Class: 114
-      Script: {instanceID: 1916}
+      Script: {instanceID: 1924}
     - Class: 114
-      Script: {instanceID: 1996}
+      Script: {instanceID: 2004}
     - Class: 114
-      Script: {instanceID: 2326}
+      Script: {instanceID: 2334}
     - Class: 114
-      Script: {instanceID: 2482}
+      Script: {instanceID: 2490}
     - Class: 114
-      Script: {instanceID: 2486}
+      Script: {instanceID: 2494}
     - Class: 114
-      Script: {instanceID: 2504}
+      Script: {instanceID: 2512}
     - Class: 114
-      Script: {instanceID: 2692}
+      Script: {instanceID: 2700}
     - Class: 114
-      Script: {instanceID: 2816}
+      Script: {instanceID: 2824}
     - Class: 114
-      Script: {instanceID: 2826}
+      Script: {instanceID: 2834}
     - Class: 114
-      Script: {instanceID: 2862}
+      Script: {instanceID: 2870}
     - Class: 114
-      Script: {instanceID: 3026}
+      Script: {instanceID: 3034}
     - Class: 114
-      Script: {instanceID: 3216}
+      Script: {instanceID: 3224}
     - Class: 114
-      Script: {instanceID: 3262}
+      Script: {instanceID: 3270}
     - Class: 114
-      Script: {instanceID: 3276}
+      Script: {instanceID: 3284}
     - Class: 114
-      Script: {instanceID: 3302}
+      Script: {instanceID: 3310}
     - Class: 114
-      Script: {instanceID: 3376}
+      Script: {instanceID: 3384}
     - Class: 114
-      Script: {instanceID: 3550}
+      Script: {instanceID: 3518}
     - Class: 114
-      Script: {instanceID: 3578}
+      Script: {instanceID: 3560}
     - Class: 114
-      Script: {instanceID: 3594}
+      Script: {instanceID: 3588}
     - Class: 114
-      Script: {instanceID: 3894}
+      Script: {instanceID: 3604}
     - Class: 114
-      Script: {instanceID: 4004}
+      Script: {instanceID: 3906}
     - Class: 114
-      Script: {instanceID: 4090}
+      Script: {instanceID: 4016}
     - Class: 114
-      Script: {instanceID: 4320}
+      Script: {instanceID: 4102}
     - Class: 114
-      Script: {instanceID: 4500}
+      Script: {instanceID: 4332}
     - Class: 114
-      Script: {instanceID: 4596}
+      Script: {instanceID: 4512}
     - Class: 114
-      Script: {instanceID: 4614}
+      Script: {instanceID: 4608}
     - Class: 114
-      Script: {instanceID: 4848}
+      Script: {instanceID: 4626}
     - Class: 114
-      Script: {instanceID: 4880}
+      Script: {instanceID: 4860}
     - Class: 114
-      Script: {instanceID: 4924}
+      Script: {instanceID: 4892}
     - Class: 114
-      Script: {instanceID: 5346}
+      Script: {instanceID: 4936}
     - Class: 114
-      Script: {instanceID: 26992}
+      Script: {instanceID: 5358}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -498,6 +498,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.ProBuilder.dll
     namespaceName: UnityEngine.ProBuilder
     className: TriggerBehaviour
+  - hash:
+      serializedVersion: 2
+      Hash: a1dfc8230d130057c02b6cc45233f311
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ILocalizable
   - hash:
       serializedVersion: 2
       Hash: 380e546dc8c5093fbabd122a37af5cbb
@@ -846,13 +852,7 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.EventSystems
     className: TouchInputModule
-  - hash:
-      serializedVersion: 2
-      Hash: a1dfc8230d130057c02b6cc45233f311
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: ILocalizable
   platform: 19
   scenePathNames:
   - Assets/Scenes/UITest.unity
-  playerPath: C:/Users/theo.flink/GYARTE_Project/Builds/GYARTE_Project.exe
+  playerPath: C:/Users/johnt/Desktop/Projects/Unity projects/GYARTE_Project/Builds/GYARTE_Project.exe

@@ -19,9 +19,9 @@ MonoBehaviour:
     width: 1920
     height: 997
   m_ShowMode: 4
-  m_Title: Hierarchy
+  m_Title: Scene
   m_RootView: {fileID: 6}
-  m_MinSize: {x: 875, y: 542}
+  m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
   m_Maximized: 1
 --- !u!114 &2
@@ -45,10 +45,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 679, y: 492}
-  m_MaxSize: {x: 14002, y: 14042}
+  m_MinSize: {x: 676, y: 492}
+  m_MaxSize: {x: 14001, y: 14042}
   vertical: 0
-  controlID: 177
+  controlID: 60
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -68,8 +68,8 @@ MonoBehaviour:
     y: 0
     width: 554
     height: 947
-  m_MinSize: {x: 276, y: 71}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -223,10 +223,10 @@ MonoBehaviour:
     y: 0
     width: 1366
     height: 947
-  m_MinSize: {x: 403, y: 492}
+  m_MinSize: {x: 401, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 178
+  controlID: 90
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -248,10 +248,10 @@ MonoBehaviour:
     y: 0
     width: 1366
     height: 599
-  m_MinSize: {x: 403, y: 221}
-  m_MaxSize: {x: 8003, y: 4021}
+  m_MinSize: {x: 401, y: 221}
+  m_MaxSize: {x: 8001, y: 4021}
   vertical: 0
-  controlID: 179
+  controlID: 91
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -271,8 +271,8 @@ MonoBehaviour:
     y: 0
     width: 964
     height: 599
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -325,14 +325,14 @@ MonoBehaviour:
   m_LastFolders:
   - Assets
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\theo.flink\GYARTE_Project
+  m_LastProjectPath: C:\Users\johnt\Desktop\Projects\Unity projects\GYARTE_Project
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
-    scrollPos: {x: 0, y: 31}
-    m_SelectedIDs: 64490000
-    m_LastClickedID: 18788
-    m_ExpandedIDs: 0000000064490000784900007a4900006482000000ca9a3b
+    scrollPos: {x: 0, y: 1}
+    m_SelectedIDs: 0a4a0000
+    m_LastClickedID: 18954
+    m_ExpandedIDs: 000000000a4a0000224a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -360,7 +360,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0000000064490000
+    m_ExpandedIDs: 000000000a4a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -483,7 +483,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: e0fbfeff00fcfeff22fcfeff0afdfeff2afdfeff4cfdfeff02fefeff22fefeff44fefeff9200ffffb200ffff9801ffffea04ffff0c05fffff205ffff6c4cffff8e4cffff744dffffc65fffffe65fffffcc60ffffc065ffffe065ffffc666ffff2ea9ffff46b0ffff66b0ffff4ab1ffffc2d7ffffe0d7ffffe6d7ffffecd7fffff2d7ffff04d8ffff16defffffadfffff22e3fffff0ecffff22f8fffffc4600002a4700003c470000604700007e47000084470000aa660000d2660000d6660000e2660000f666000004670000166700003c6700006c670000726700007a6700009a670000a4670000b2670000366800004e680000606800006a680000846800009c680000a6680000ae680000c8680000e4680000ee68000004690000246900005269000026b000005eb0000098b00000cab00000d0b00000f0ba00001ebb00003ebb000090bb0000f2bc0000fabc000030bd00003ccf000056cf000060cf000066cf00006acf000076cf00008acf000094cf0000a2cf0000aacf0000b4cf0000d2cf0000dccf00000ed0000014d000001cd0000034d000003ed000004cd0000080d00000ccd00000ded00000e4d00000f8d0000014d100001cd1000034d100003ed1000046d1000060d100007cd1000086d100009cd10000bcd10000eed1000054f90000be010100ec0101000c0201005e020100c0030100c8030100fe030100c82201003a230100
+      m_ExpandedIDs: aad7ffffcad7ffffb0d8ffff52daffff72daffff58dbfffff8dcffff18ddfffffeddffff10e1ffff30e1ffff16e2ffffaee3ffffcee3ffffb4e4fffffcecffff1cedffff06eeffff9cefffffbcefffff90f0ffff0cf8ffff224700005a4700006c47000092470000c4470000ca470000f45800001c5900009c590000f25a0000fa5a00007c860000a4860000ba860000bc860000da860000f0860000248700007a88000082880000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -499,7 +499,7 @@ MonoBehaviour:
         m_IsRenaming: 0
         m_OriginalEventType: 11
         m_IsRenamingFilename: 0
-        m_ClientGUIView: {fileID: 5}
+        m_ClientGUIView: {fileID: 4}
       m_SearchString: 
     m_ExpandedScenes: []
     m_CurrenRootInstanceID: 0
@@ -543,9 +543,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 508.56577, y: 211.19803, z: -33.986946}
+    m_Target: {x: 320, y: 240, z: 0}
     speed: 2
-    m_Value: {x: 508.56577, y: 211.19803, z: -33.986946}
+    m_Value: {x: 319.99997, y: 239.99997, z: -0.0000016440281}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -594,11 +594,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: 0, y: 0, z: 0, w: 1}
     speed: 2
-    m_Value: {x: 0, y: 0, z: 0, w: 1}
+    m_Value: {x: -0.00000042792593, y: 0.0000014742425, z: 0.00000019573845, w: 1}
   m_Size:
-    m_Target: 147.97742
+    m_Target: 252.40256
     speed: 2
-    m_Value: 147.97742
+    m_Value: 264.29587
   m_Ortho:
     m_Target: 0
     speed: 2
