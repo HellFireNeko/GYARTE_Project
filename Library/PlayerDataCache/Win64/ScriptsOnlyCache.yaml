@@ -855,4 +855,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/UITest.unity
-  playerPath: C:/Users/johnt/Desktop/Projects/Unity projects/GYARTE_Project/Builds/GYARTE_Project.exe
+  playerPath: C:/Users/theo.flink/GYARTE_Project/Builds/GYARTE_Project.exe
