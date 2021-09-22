@@ -24,6 +24,8 @@ public class MovementCharacter : MonoBehaviour
     private float updown = 0;
     [SerializeField]
     private bool Locked = false;
+    [SerializeField]
+    private Raycaster raycaster;
 
     // Use this for initialization
     void Start()
@@ -68,6 +70,11 @@ public class MovementCharacter : MonoBehaviour
                 updown += looker;
                 updown = Mathf.Clamp(updown, -LookContraint, LookContraint);
                 Camera.main.transform.rotation = Quaternion.Euler(updown, transform.eulerAngles.y, 0);
+            }
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                raycaster.RayCast();
             }
 
             moveDirection.y = y;
