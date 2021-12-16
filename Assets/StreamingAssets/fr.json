@@ -1,0 +1,13 @@
+{
+	"play": "Jouer",
+    "exit": "Sortie",
+    "start": "Commencer",
+    "connect": "Connecter",
+    "host": "Hôte",
+    "name": "Nom",
+    "password": "Mot de passe",
+    "leave": "Quitter",
+    "ready": "Prêt",
+    "not ready": "Pas prêt",
+    "return": "Return"
+}

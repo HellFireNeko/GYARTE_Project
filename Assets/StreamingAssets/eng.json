@@ -1,0 +1,13 @@
+{
+	"play": "Play",
+    "exit": "Exit",
+    "start": "Start",
+    "connect": "Connect",
+    "host": "Host",
+    "name": "Name",
+    "password": "Password",
+    "leave": "Leave",
+    "ready": "Ready",
+    "not ready": "Not ready",
+    "return": "Return"
+}

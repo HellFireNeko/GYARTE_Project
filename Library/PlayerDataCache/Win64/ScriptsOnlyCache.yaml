@@ -1,54 +1,59 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - DoNotDestroy
-    - LobbyBehavior
-    - MenuBehavior
-    - NetworkServer
+    - Assets.Scripts.PlayerDisplayName
+    - ILocalizable
+    - LobbyManagerUI
+    - LobbyPlayerList
+    - LobbyPlayerListObject
+    - ModelSelector
     - NetworkedClient
-    - PlayerListObject
-    IngameDebugConsole.Runtime.dll:
-    - IngameDebugConsole.DebugLogItem
-    - IngameDebugConsole.DebugLogManager
-    - IngameDebugConsole.DebugLogPopup
-    - IngameDebugConsole.DebugLogRecycledListView
-    - IngameDebugConsole.DebugLogResizeListener
-    - IngameDebugConsole.DebugsOnScrollListener
+    - PlayerModelSelector
     Unity.Multiplayer.MLAPI.Prototyping.dll:
     - MLAPI.Prototyping.NetworkTransform
     Unity.Multiplayer.MLAPI.Runtime.dll:
+    - MLAPI.NetworkManager
     - MLAPI.NetworkObject
     - MLAPI.Transports.UNET.UNetTransport
-    Unity.ProBuilder.Editor.dll:
-    - UnityEditor.ProBuilder.EditorToolbar
-    - UnityEditor.ProBuilder.ProBuilderEditor
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_Dropdown
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_InputField
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
+    - TMPro.TextMeshPro
+    - TMPro.TextMeshProUGUI
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
-    - UnityEngine.EventSystems.EventTrigger
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.ContentSizeFitter
     - UnityEngine.UI.GraphicRaycaster
+    - UnityEngine.UI.GridLayoutGroup
     - UnityEngine.UI.HorizontalLayoutGroup
     - UnityEngine.UI.Image
-    - UnityEngine.UI.InputField
     - UnityEngine.UI.LayoutElement
+    - UnityEngine.UI.Mask
+    - UnityEngine.UI.RawImage
     - UnityEngine.UI.RectMask2D
     - UnityEngine.UI.ScrollRect
     - UnityEngine.UI.Scrollbar
-    - UnityEngine.UI.Text
-    - UnityEngine.UI.VerticalLayoutGroup
+    - UnityEngine.UI.Toggle
   sceneClasses:
-    Assets/Scenes/DebugPlayerTest.unity:
+    Assets/Scenes/UITest.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
       Script: {instanceID: 0}
     - Class: 21
       Script: {instanceID: 0}
@@ -61,33 +66,14 @@ ScriptsOnlyBuild:
     - Class: 43
       Script: {instanceID: 0}
     - Class: 48
+      Script: {instanceID: 0}
+    - Class: 49
       Script: {instanceID: 0}
     - Class: 64
       Script: {instanceID: 0}
-    - Class: 89
+    - Class: 65
       Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    Assets/Scenes/Lobby.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 81
+    - Class: 84
       Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
@@ -96,126 +82,77 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1502}
+      Script: {instanceID: 1528}
     - Class: 114
-      Script: {instanceID: 1504}
+      Script: {instanceID: 1530}
     - Class: 114
-      Script: {instanceID: 1506}
+      Script: {instanceID: 1758}
     - Class: 114
-      Script: {instanceID: 2532}
+      Script: {instanceID: 1844}
     - Class: 114
-      Script: {instanceID: 2656}
+      Script: {instanceID: 1860}
     - Class: 114
-      Script: {instanceID: 3098}
+      Script: {instanceID: 1924}
     - Class: 114
-      Script: {instanceID: 3212}
+      Script: {instanceID: 2004}
     - Class: 114
-      Script: {instanceID: 4200}
+      Script: {instanceID: 2334}
     - Class: 114
-      Script: {instanceID: 4706}
+      Script: {instanceID: 2490}
     - Class: 114
-      Script: {instanceID: 4722}
-    - Class: 115
-      Script: {instanceID: 0}
-    - Class: 128
-      Script: {instanceID: 0}
-    - Class: 157
-      Script: {instanceID: 0}
-    - Class: 196
-      Script: {instanceID: 0}
-    - Class: 213
-      Script: {instanceID: 0}
-    - Class: 222
-      Script: {instanceID: 0}
-    - Class: 223
-      Script: {instanceID: 0}
-    - Class: 224
-      Script: {instanceID: 0}
-    - Class: 225
-      Script: {instanceID: 0}
-    Assets/Scenes/Menu.unity:
-    - Class: 1
-      Script: {instanceID: 0}
-    - Class: 4
-      Script: {instanceID: 0}
-    - Class: 20
-      Script: {instanceID: 0}
-    - Class: 21
-      Script: {instanceID: 0}
-    - Class: 23
-      Script: {instanceID: 0}
-    - Class: 28
-      Script: {instanceID: 0}
-    - Class: 33
-      Script: {instanceID: 0}
-    - Class: 43
-      Script: {instanceID: 0}
-    - Class: 48
-      Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
-    - Class: 89
-      Script: {instanceID: 0}
-    - Class: 104
-      Script: {instanceID: 0}
-    - Class: 108
-      Script: {instanceID: 0}
+      Script: {instanceID: 2494}
     - Class: 114
-      Script: {instanceID: 1502}
+      Script: {instanceID: 2512}
     - Class: 114
-      Script: {instanceID: 1504}
+      Script: {instanceID: 2700}
     - Class: 114
-      Script: {instanceID: 1506}
+      Script: {instanceID: 2824}
     - Class: 114
-      Script: {instanceID: 1698}
+      Script: {instanceID: 2834}
     - Class: 114
-      Script: {instanceID: 1762}
+      Script: {instanceID: 2870}
     - Class: 114
-      Script: {instanceID: 2532}
+      Script: {instanceID: 3034}
     - Class: 114
-      Script: {instanceID: 2656}
+      Script: {instanceID: 3224}
     - Class: 114
-      Script: {instanceID: 2914}
+      Script: {instanceID: 3270}
     - Class: 114
-      Script: {instanceID: 3052}
+      Script: {instanceID: 3284}
     - Class: 114
-      Script: {instanceID: 3098}
+      Script: {instanceID: 3310}
     - Class: 114
-      Script: {instanceID: 3112}
+      Script: {instanceID: 3384}
     - Class: 114
-      Script: {instanceID: 3138}
+      Script: {instanceID: 3518}
     - Class: 114
-      Script: {instanceID: 3212}
+      Script: {instanceID: 3560}
     - Class: 114
-      Script: {instanceID: 3400}
+      Script: {instanceID: 3588}
     - Class: 114
-      Script: {instanceID: 3420}
+      Script: {instanceID: 3604}
     - Class: 114
-      Script: {instanceID: 3572}
+      Script: {instanceID: 3906}
     - Class: 114
-      Script: {instanceID: 3802}
+      Script: {instanceID: 4016}
     - Class: 114
-      Script: {instanceID: 3888}
+      Script: {instanceID: 4102}
     - Class: 114
-      Script: {instanceID: 3922}
+      Script: {instanceID: 4332}
     - Class: 114
-      Script: {instanceID: 4118}
+      Script: {instanceID: 4512}
     - Class: 114
-      Script: {instanceID: 4156}
+      Script: {instanceID: 4608}
     - Class: 114
-      Script: {instanceID: 4270}
+      Script: {instanceID: 4626}
     - Class: 114
-      Script: {instanceID: 4310}
+      Script: {instanceID: 4860}
     - Class: 114
-      Script: {instanceID: 4330}
+      Script: {instanceID: 4892}
     - Class: 114
-      Script: {instanceID: 4426}
+      Script: {instanceID: 4936}
     - Class: 114
-      Script: {instanceID: 4706}
-    - Class: 114
-      Script: {instanceID: 4756}
-    - Class: 114
-      Script: {instanceID: 5028}
+      Script: {instanceID: 5358}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -237,6 +174,10 @@ ScriptsOnlyBuild:
     - Class: 224
       Script: {instanceID: 0}
     - Class: 225
+      Script: {instanceID: 0}
+    - Class: 258
+      Script: {instanceID: 0}
+    - Class: 850595691
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -367,6 +308,24 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
+      Hash: 14e7665665a274dc34b6f9e2504e8764
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LobbyManagerUI
+  - hash:
+      serializedVersion: 2
+      Hash: d78c57e0f9144965baaf1077cde3d369
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ModelSelector
+  - hash:
+      serializedVersion: 2
+      Hash: 6597aa89fc469440dd54d21b71cc664a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: SpawnPosition
+  - hash:
+      serializedVersion: 2
       Hash: a1aa98c78061c6f03a8c124cda576e67
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -421,6 +380,18 @@ ScriptsOnlyBuild:
     className: TestRunCallbackListener
   - hash:
       serializedVersion: 2
+      Hash: 034726260f2f2cabf39b9cc2edad8c2a
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LobbyPlayerList
+  - hash:
+      serializedVersion: 2
+      Hash: 3e3825dc32ac2f0d6579248cb4c56e85
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: DebugTriggerShow
+  - hash:
+      serializedVersion: 2
       Hash: f40fedccd4adbc76605bea6d67537e4b
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -451,7 +422,7 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: 4ad4c53c1cc724ad4314e543d4ed8715
+      Hash: 18a22f2d6a1fad4f5e215b7abdc5a02d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: NetworkedClient
@@ -529,10 +500,28 @@ ScriptsOnlyBuild:
     className: TriggerBehaviour
   - hash:
       serializedVersion: 2
+      Hash: a1dfc8230d130057c02b6cc45233f311
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: ILocalizable
+  - hash:
+      serializedVersion: 2
+      Hash: 380e546dc8c5093fbabd122a37af5cbb
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LobbyPlayerListObject
+  - hash:
+      serializedVersion: 2
       Hash: 9b070fd11003a7ac517c876788f0fb2a
     assemblyName: IngameDebugConsole.Runtime.dll
     namespaceName: IngameDebugConsole
     className: DebugsOnScrollListener
+  - hash:
+      serializedVersion: 2
+      Hash: 30cb073ea8b0aee85172ebf8ca4a5981
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: PlayerModelSelector
   - hash:
       serializedVersion: 2
       Hash: 5f1afab26586f4310783842d18c28473
@@ -703,6 +692,12 @@ ScriptsOnlyBuild:
     className: DebugLogPopup
   - hash:
       serializedVersion: 2
+      Hash: aba81c00cfc73cce4f204012be1d7348
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: LobbyNetworkBehavior
+  - hash:
+      serializedVersion: 2
       Hash: 7b8e35aaa6eea62ffaf8841b0ad9416d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -721,7 +716,7 @@ ScriptsOnlyBuild:
     className: ControlTrack
   - hash:
       serializedVersion: 2
-      Hash: 0e85a2a273c244166656f862c4867536
+      Hash: 083d50dc81bb93dfa239aa57c07e0ca9
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuBehavior
@@ -775,10 +770,22 @@ ScriptsOnlyBuild:
     className: NameReader
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: HealthScript
+  - hash:
+      serializedVersion: 2
       Hash: 6980e81ddc615a861309d2d659cc3760
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TMP_SubMeshUI
+  - hash:
+      serializedVersion: 2
+      Hash: 0298b1ddb85aa5d44116fd68d3e0a4c9
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: Assets.Scripts
+    className: PlayerDisplayName
   - hash:
       serializedVersion: 2
       Hash: e7182e6d337b73771f0d7b32eb22e341
@@ -847,7 +854,5 @@ ScriptsOnlyBuild:
     className: TouchInputModule
   platform: 19
   scenePathNames:
-  - Assets/Scenes/Menu.unity
-  - Assets/Scenes/Lobby.unity
-  - Assets/Scenes/DebugPlayerTest.unity
+  - Assets/Scenes/UITest.unity
   playerPath: C:/Users/theo.flink/GYARTE_Project/Builds/GYARTE_Project.exe

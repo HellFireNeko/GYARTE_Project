@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dea3fbfe28d12d4881de9732d758e44, type: 3}
+  m_Name: Player Model List
+  m_EditorClassIdentifier: 
+  PlayerModelObjects:
+  - Texture: {fileID: 8400000, guid: 285d20e708b6b06478a606ee37abaf9c, type: 2}
+    Model: {fileID: 2495362035135919338, guid: ec43bee4054042b4e919cab039ceeeb5, type: 3}
+  - Texture: {fileID: 8400000, guid: 648ead90c993734468e094f7279852af, type: 2}
+    Model: {fileID: 3389993592984030365, guid: eaca3f8dc686051479559d2864839a9d, type: 3}

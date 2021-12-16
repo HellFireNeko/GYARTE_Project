@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using MLAPI;
 using MLAPI.NetworkVariable;
+using MLAPI.Messaging;
 
 [Serializable]
 public enum PlayerRole
@@ -15,58 +16,93 @@ public enum PlayerRole
 [RequireComponent(typeof(CharacterController))]
 public class NetworkedClient : NetworkBehaviour
 {
-    [SerializeField]
-    private Transform CameraPositionPoint;
-
-    [SerializeField]
-    private GameObject CameraPrefab;
-
     private CharacterController controller;
 
-    [SerializeField]
-    private float speed = 25.0F;
-    [SerializeField]
-    private float jumpSpeed = 8.0F;
-    [SerializeField]
-    private float gravity = 20.0F;
+    [SerializeField] private float speed = 25.0F;
+    [SerializeField] private float jumpSpeed = 8.0F;
+    [SerializeField] private float gravity = 20.0F;
     private Vector3 moveDirection = Vector3.zero;
     private float turner;
     private float looker;
-    [SerializeField]
-    private float sensitivity = 5;
-    [SerializeField]
-    private float LookContraint;
+    [SerializeField] private float sensitivity = 5;
+    [SerializeField] private float LookContraint;
     private float y = 0;
     private float updown = 0;
-    [SerializeField]
-    private bool Locked = false;
+    [SerializeField] private bool Locked = false;
+
+    [SerializeField] private bool GravityEnable = true;
 
     private bool IsActivePlayer = false;
 
     private NetworkVariableInt Health = new NetworkVariableInt(new NetworkVariableSettings() { WritePermission = NetworkVariablePermission.Everyone }, 3);
     private bool Alive { get { return Health.Value > 0; } }
 
-    [SerializeField]
-    private NetworkVariable<PlayerRole> Role;
+    [SerializeField] private NetworkVariable<PlayerRole> Role = new NetworkVariable<PlayerRole>(new NetworkVariableSettings() { WritePermission = NetworkVariablePermission.Everyone });
+
+    [SerializeField] private bool RandomizeColor;
+
+    [SerializeField] private Camera PlayerCamera;
+    private Camera MainCamera;
+
+    private NetworkVariableColor playerColor = new NetworkVariableColor(new NetworkVariableSettings() { WritePermission = NetworkVariablePermission.Everyone });
+
+    [ClientRpc]
+    public void SetRoleClientRpc(string role)
+    {
+        if (Enum.TryParse(role, out PlayerRole r))
+            Role.Value = r;
+    }
 
     // Use this for initialization
     void Start()
     {
+        MainCamera = Camera.main;
+        playerColor.OnValueChanged += (a, b) => { GetComponent<MeshRenderer>().material.color = b; };
+        Role.OnValueChanged += (old, val) => { print("Updated"); };
         controller = GetComponent<CharacterController>();
         Health.OnValueChanged += ListenChange;
+        GenerateMyColorServerRpc();
+        GetComponent<MeshRenderer>().material.color = playerColor.Value;
+    }
 
+    [ServerRpc]
+    private void GenerateMyColorServerRpc()
+    {
+        if (!IsServer || !RandomizeColor) return;
+
+        playerColor.Value = UnityEngine.Random.ColorHSV();
+    }
+
+    [ServerRpc]
+    private void SetHealthServerRpc(int health)
+    {
+        if (!IsServer) return;
+
+        Health.Value = health;
+    }
+
+    [ClientRpc]
+    public void InitClientRpc()
+    {
+        SetHealthServerRpc(3);
+        MainCamera.enabled = false;
         if (IsLocalPlayer)
         {
             IsActivePlayer = true;
 
             Cursor.lockState = CursorLockMode.Locked;
 
-            var c = Instantiate(CameraPrefab, CameraPositionPoint);
+            PlayerCamera.enabled = true;
 
-            c.tag = "MainCamera";
-
-            c.transform.SetPositionAndRotation(CameraPositionPoint.position, CameraPositionPoint.rotation);
+            ToggleLock();
         }
+    }
+
+    [ClientRpc]
+    public void ReturnToLobbyClientRpc()
+    {
+        PlayerCamera.enabled = false;
+        MainCamera.enabled = true;
     }
 
     void OnDestroy()
@@ -74,18 +110,16 @@ public class NetworkedClient : NetworkBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
-    public void AssignRole(PlayerRole role)
-    {
-        Role.Value = role;
-    }
-
     public void ToggleLock()
     {
         Locked = !Locked;
     }
 
-    public void HitEvent()
+    [ServerRpc(RequireOwnership = false)]
+    public void HitEventServerRpc()
     {
+        if (!IsServer) return;
+
         Health.Value -= 1;
     }
 
@@ -97,6 +131,8 @@ public class NetworkedClient : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!IsOwner) { return; }
+
         if (!Locked && IsActivePlayer && (Alive || Role.Value == PlayerRole.Hunter))
         {
             // is the controller on the ground?
@@ -140,9 +176,17 @@ public class NetworkedClient : NetworkBehaviour
                 var s = Physics.Raycast(Camera.main.transform.position, Camera.main.transform.rotation.eulerAngles, out RaycastHit hit, 5f, 3);
                 if (s)
                 {
-                    hit.collider.gameObject.GetComponent<NetworkedClient>().HitEvent();
+                    hit.collider.gameObject.GetComponent<NetworkedClient>().HitEventServerRpc();
                 }
             }
+        }
+        if (GravityEnable && Locked)
+        {
+            moveDirection.y = y;
+            //Applying gravity to the controller
+            moveDirection.y -= gravity * Time.deltaTime;
+
+            y = moveDirection.y;
         }
     }
 }
